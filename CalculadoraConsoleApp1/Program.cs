@@ -10,10 +10,12 @@ namespace Calculadora.ConsoleApp1
             string[] historicoOperacoes = new string[100];
 
             int contadorHistorico = 0;
-            decimal resultado = 0;
+          
 
             string opcao = "0";
             decimal numero1 = 0, numero2 = 0;
+            bool tabuada = false;
+
 
             while (true)
 
@@ -22,37 +24,59 @@ namespace Calculadora.ConsoleApp1
                 Console.WriteLine("Calculadora Tabaja 2025 \n");
 
                 Console.WriteLine("1 - Somar\n2 - Subtrair\n3 -  Multiplicar\n4 - Dividir\n5 - Tabuada\n6 - Historico Operações\n7- Sair");
-                opcao = Console.ReadLine();
+                opcao = Console.ReadLine().ToUpper();
 
-                for (int contador = 0; contador < historicoOperacoes.Length; contador++)
+
+
+                if (opcao == "S")
                 {
-                    string operacaoRealizada = historicoOperacoes[contador];
-                    Console.WriteLine(operacaoRealizada);
-
-                    string Valoratual = historicoOperacoes[contador];
-
-                    if (Valoratual != null)
-                    {
-                        Console.WriteLine(Valoratual);
-                    }
+                    break;
                 }
 
-                if (opcao == "5")
+                else if (opcao == "5")
                 {
+                    tabuada = true;
+                    Console.WriteLine("--------------------------------");
                     Console.WriteLine("Tabuada");
+                    Console.WriteLine("--------------------------------");
 
-                    Console.WriteLine("Digite o numero que deseja ver a tabuada \n");
-                    string tabuadaString = Console.ReadLine();
-                    int tabuada = Convert.ToInt32(tabuadaString);
+                    Console.Write("Digite o número: ");
+                    int numeroTabuada = Convert.ToInt32(Console.ReadLine());
 
-                    for (int contador = 0; contador <= 10; contador++)
+                    for (int contador = 1; contador <= 10; contador++)
                     {
-                        int linhaTabuada = tabuada * contador;
-                        Console.WriteLine($"{tabuada} x {contador} = {linhaTabuada}");
+                        int resultadoTabuada = numeroTabuada * contador;
+
+                        Console.WriteLine($"{numeroTabuada} x {contador} = {resultadoTabuada}");
                     }
+                    
                 }
 
-                if (opcao != "5")
+
+
+
+                else if (opcao == "6")
+                {
+                    Console.WriteLine("--------------------------------");
+                    Console.WriteLine("Histórico de Operações");
+                    Console.WriteLine("--------------------------------");
+
+                    for (int contador = 0; contador < historicoOperacoes.Length; contador++)
+                    {
+                        string valorAtual = historicoOperacoes[contador];
+
+                        if (valorAtual != null)
+                            Console.WriteLine(valorAtual);
+                    }
+
+                    Console.WriteLine("Aperte ENTER para continuar");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                decimal resultado = 0;
+
+                 if (tabuada == false)
                 {
                     Console.WriteLine("Qual o primeiro numero ");
                     numero1 = decimal.Parse(Console.ReadLine());
@@ -60,7 +84,9 @@ namespace Calculadora.ConsoleApp1
                     Console.WriteLine("Qual o segundo numero ");
                     numero2 = decimal.Parse(Console.ReadLine());
 
+                    
                 }
+                
 
                 if (opcao == "1")
                 {
@@ -98,29 +124,24 @@ namespace Calculadora.ConsoleApp1
                     }
                 }
 
-                else if (opcao == "6")
+
+                contadorHistorico += 1;
+
+                
+               
+                if (opcao == "7")
                 {
-                    Console.WriteLine(historicoOperacoes);
-
-                    for (int contador = 0; contador < historicoOperacoes.Length; contador++)
-                    {
-                        Console.WriteLine(historicoOperacoes[contador]);
-                    }
-                }
-
-                else if (opcao == "7")
-                {
-
                     break;
                 }
 
 
 
 
+                if (tabuada == false)
+                {
+                    Console.WriteLine($"Resultado : {resultado.ToString("F2")}");
 
-                Console.WriteLine($"Resultado : {resultado.ToString("F2")}");
-
-
+                }
                 Console.WriteLine("Deseja Continuar? S/N \n");
                 string DesejaContinuarString = Console.ReadLine().ToUpper();
 
@@ -130,26 +151,6 @@ namespace Calculadora.ConsoleApp1
                     break;
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
-
 }
