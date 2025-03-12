@@ -125,7 +125,7 @@ namespace Calculadora.ConsoleApp1
                 }
 
 
-                contadorHistorico += 1;
+                    contadorHistorico += 1;
 
                 
                
