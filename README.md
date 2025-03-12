@@ -2,7 +2,7 @@
 
 ![](https://i.imgur.com/gesax9I.gif)
 
-#**Funcionalidades:**
+**Funcionalidades:**
 **Operações Básicas:** Realize somas, subtrações, multiplicações e divisões.
 
 **Suporte a Decimais:** Trabalhe com números que têm até duas casas decimais.
@@ -15,7 +15,27 @@
 
 **Histórico de Operações:** A calculadora é capaz de armazenar um histórico de operações.
 
-Como usar
-Clone o repositório ou baixe o código fonte.
-Abra o terminal ou o prompt de comando e navegue até a pasta raiz
-Utilize o comando abaixo para restaurar as dependências do projeto.
+**Como usar**
+1.Clone o repositório ou baixe o código fonte.
+2.Abra o terminal ou o prompt de comando e navegue até a pasta raiz
+3.Utilize o comando abaixo para restaurar as dependências do projeto.
+
+```
+	dotnet restore
+```
+
+
+4.Em seguida,complie uma solução utilizando o comando:
+```
+dotnet build --configuration Release
+```
+
+5.Para executar o projeto compilando em tempo real:
+```
+dotnet run --project Calculadora.ConsoleApp
+```
+
+6.Para executar o arquivo compilado, navegue até a pasta ./Calculadora.ConsoleApp/bin/Release/net8.0/e execute o arquivo:
+```
+Calculdora.ConsoleApp.exe
+```
