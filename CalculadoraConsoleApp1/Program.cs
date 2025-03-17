@@ -2,9 +2,8 @@
 {
     internal class Program
     {
-        static string[] historicoOperacoes = new string[100];
-        static int contadorHistorico = 0;
-
+        // Quando um programa é executado o programa procura a classe program e dentro dessa classe procura o método main
+        
         static void Main(string[] args)
         {
             while (true)
@@ -78,16 +77,21 @@
             Console.Write("Digite o número: ");
             int numeroTabuada = Convert.ToInt32(Console.ReadLine());
 
-            for (int contador = 1; contador <= 10; contador++)
-            {
-                int resultadoTabuada = numeroTabuada * contador;
+            string[] linhastabuada = Calculadora.GerarTabuada(numeroTabuada);
 
-                Console.WriteLine($"{numeroTabuada} x {contador} = {resultadoTabuada}");
+
+            for (int contador = 1; contador < 10; contador++)
+            {
+                Console.WriteLine($"{linhastabuada[contador]}");
+
+               
+               
             }
 
             Console.WriteLine("--------------------------------");
             Console.Write("Aperte ENTER para continuar");
             Console.ReadLine();
+
         }
 
         static void ExibirHistoricoOperacoes()
@@ -95,6 +99,8 @@
             Console.WriteLine("--------------------------------");
             Console.WriteLine("Histórico de Operações");
             Console.WriteLine("--------------------------------");
+
+                string[] historicoOperacoes = Calculadora.obterhistoricodeoperacoes();
 
             for (int contador = 0; contador < historicoOperacoes.Length; contador++)
             {
@@ -109,7 +115,7 @@
             Console.ReadLine();
         }
 
-        static decimal RealizarCalculo(string operacao)
+       public static decimal RealizarCalculo(string operacao)
         {
             Console.Write("Digite o primeiro número: ");
             decimal primeiroNumero = Convert.ToDecimal(Console.ReadLine());
@@ -121,18 +127,15 @@
 
             if (operacao == "1")
             {
-                resultado = primeiroNumero + segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} + {segundoNumero} = {resultado}";
+                resultado = Calculadora.Somar(primeiroNumero, segundoNumero);
             }
             else if (operacao == "2")
             {
-                resultado = primeiroNumero - segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} - {segundoNumero} = {resultado}";
+                resultado = Calculadora.Subtrair(primeiroNumero, segundoNumero);
             }
             else if (operacao == "3")
             {
-                resultado = primeiroNumero * segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} * {segundoNumero} = {resultado}";
+                resultado = Calculadora.Multiplicar(primeiroNumero, segundoNumero);
             }
             else if (operacao == "4")
             {
@@ -143,13 +146,11 @@
                     segundoNumero = Convert.ToDecimal(Console.ReadLine());
                 }
 
-                resultado = primeiroNumero / segundoNumero;
-                historicoOperacoes[contadorHistorico] = $"{primeiroNumero} / {segundoNumero} = {resultado}";
+                resultado = Calculadora.Dividir(primeiroNumero, segundoNumero);
             }
 
-            contadorHistorico += 1;
-
-            return resultado;
+            Calculadora.incrementandoocontadorhistorico();
+                return resultado;
         }
 
         static void ExibirResultado(decimal resultado)
